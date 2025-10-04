@@ -1,17 +1,25 @@
 #include<iostream>
+#include<Windows.h>
+#include <cstdlib>
 using namespace std;
 int main()
 {
-	setlocale(LC_ALL, "ru");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	srand(time(NULL));
 	//Задача 1
-	int arr[5];
-	int max = 0;
-	int min = 2147483647;
-	for (int i = 0; i != 5; i++)
+	std::cout << "Задание 1 ";
+	const int size = 10;
+	int arr[size];
+	int max, min;
+	std::cout << "\nИсходный массив: ";
+	for (int i = 0; i < size; i++)
 	{
-		cout << "Введите число: \n";
-		cin >> arr[i];
+		arr[i] = rand() % 10;
+		std::cout << arr[i] << " ";
 	}
+	max = arr[1];
+	min = arr[1];
 	for (int i = 0; i != 5; i++)
 	{
 		if (arr[i] > max)
@@ -23,26 +31,47 @@ int main()
 			min = arr[i];
 		}
 	}
-	cout << "min = " << min << " max = " << max << "\n\n\n";
+	cout << "\nmin = " << min << " max = " << max << "\n\n\n";
 	//Задача 2
-	int arr2[5];
-	int usl;
+	std::cout << "Задание 2";
+	int arr2[size];
+	int diapr1, diapr2, temp, usl;
 	int sum = 0;
-	for (int i = 0; i != 5; i++)
+	std::cout << "\nВведите начало диапазона: ";
+	std::cin >> diapr1;
+	std::cout << "\nВведите конец диапазона: ";
+	std::cin >> diapr2;
+	if (diapr1 > diapr2)
 	{
-		cout << "Введите число: \n";
-		cin >> arr2[i];
+		temp = diapr1;
+		diapr1 = diapr2;
+		diapr2 = temp;
 	}
-	cout << "\n Введите число для условия: \n";
-	cin >> usl;
-	for (int i = 0; i != 5; i++)
+	for (int i = 0; i < size; i++)
 	{
-		if (arr2[i] < usl)
+		arr2[i] = rand() % diapr2 + diapr1;
+		
+	}
+	std::cout << "\n исходный массив: ";
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << arr[i] << " ";
+
+	}
+	std::cout << "\nВведите число условие: ";
+	std::cin >> usl;
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] < usl)
 		{
-			sum += arr2[i];
+			sum += arr[i];
 		}
+
 	}
-	cout << "sum = " << sum << "\n\n\n";
+	std::cout << "\nСумма чисел меньше " << usl << " = " << sum;
+
+
+	std::cout << "\nЗадание 3";
 	//Задача 3
 	float months[12];
 	min = 2147483647;
@@ -51,12 +80,12 @@ int main()
 	int diap2;
 	for (int i = 0; i != 12; i++)
 	{
-		cout << "Введите прибыль: \n";
+		cout << "\nВведите прибыль: ";
 		cin >> months[i];
 	}
-	cout << "Введите число месяца для начала диапазона: \n";
+	cout << "\nВведите число месяца для начала диапазона: ";
 	cin >> diap1;
-	cout << "Введите число месяца для конца диапазона: \n";
+	cout << "\nВведите число месяца для конца диапазона: ";
 	cin >> diap2;
 	diap1++;
 	diap2++;
